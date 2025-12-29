@@ -1,0 +1,12 @@
+/* Main Styles */
+.mainContent{
+  flex: 3;
+  flex-wrap: wrap;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+
+}

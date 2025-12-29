@@ -1,0 +1,17 @@
+/* Add Note Button Styles */
+
+.addNoteBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    margin: 10px 30px;
+    background-color: #37d6c4;
+    color: #333;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.btnText {
+    font-weight: 600;
+    font-size: 14px;
+}
