@@ -6,9 +6,9 @@ const TopicBtn = (props) => {
             <div className={styles.topicBtn}>
                 <div className={styles.topicIcon}></div>
                 <p>{props.name}</p>
-                <div className={styles.topicCount}>
+                {/* <div className={styles.topicCount}>
                     {props.count}
-                </div>
+                </div> */}
             </div>
         </>
     );

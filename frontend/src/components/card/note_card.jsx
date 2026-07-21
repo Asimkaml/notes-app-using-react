@@ -4,7 +4,7 @@ const NoteCard = (props) => {
         <>
         <div className={styles.card}>
             <span className={styles.cardTitle}>{props.title}</span>
-            <div className={styles.topicLabel}>{props.topic}</div>
+            {/* <div className={styles.topicLabel}>{props.topic}</div> */}
             <div className={styles.cardContent}>
                 <p>{props.content}</p>
             </div>

@@ -3,7 +3,7 @@ import SearchBar from "../search_bar/search_bar.jsx";
 import AddNoteBtn from "../button/add_note_btn.jsx";
 
 import styles from './header.module.css';
-const Header = () => {
+const Header = (props) => {
     let dark = "ON"
     return (
         <>
@@ -16,7 +16,7 @@ const Header = () => {
                         {dark}
                         <div className={styles.innerCircle}></div>
                     </button>
-                <AddNoteBtn />
+                <AddNoteBtn setNotes = {props.setNotes}/>
             </div>
         </>
     );
