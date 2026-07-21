@@ -9,7 +9,7 @@ function App() {
 
   const fetchNotes = async ()=>{
         try {
-            const response = await fetch("http://localhost:3000/notes")
+            const response = await fetch(`${import.meta.env.VITE_API_BASE}/notes`)
             // const notes: Note[] = await response.json();
             const notes = await response.json();
             setNotes(notes);
@@ -27,7 +27,7 @@ function App() {
 
   return (
     <>
-      <Header setNotes={setNotes}/>
+      <Header notes={notes} setNotes={setNotes}/>
       <div className="content">
         <Sidebar titles = {Object.keys(notes).map(key => notes[key].title)} />
         <Main notes = {notes}/>

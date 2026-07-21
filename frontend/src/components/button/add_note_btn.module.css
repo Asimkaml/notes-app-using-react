@@ -15,3 +15,54 @@
     font-weight: 600;
     font-size: 14px;
 }
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.titleInput,
+.contentInput {
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 8px;
+    font-family: inherit;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.modalActions button {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.modalActions button[type="submit"] {
+    background-color: #37d6c4;
+    color: #333;
+    font-weight: 600;
+}

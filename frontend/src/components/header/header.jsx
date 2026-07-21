@@ -16,7 +16,7 @@ const Header = (props) => {
                         {dark}
                         <div className={styles.innerCircle}></div>
                     </button>
-                <AddNoteBtn setNotes = {props.setNotes}/>
+                <AddNoteBtn notes={props.notes}setNotes = {props.setNotes}/>
             </div>
         </>
     );
