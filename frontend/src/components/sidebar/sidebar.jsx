@@ -5,12 +5,7 @@ const Sidebar = (props) => {
     return (
         <>
             <div className={styles.sidebar}>
-
-                {Object.entries(props.titles).map(
-                    ([key, value]) => (
-                        <TopicBtn key={key} name={value} count={value} />
-                    )
-                )}
+                <TopicBtn name="Total Notes" count={props.notes.length} />
             </div>
         </>
     );

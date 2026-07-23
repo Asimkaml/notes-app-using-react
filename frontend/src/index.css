@@ -1,7 +1,27 @@
 :root {
   margin: 0;
   padding: 0;
+  --bg-primary: #333;
+  --bg-secondary: #444;
+  --bg-tertiary: #666;
+  --bg-card: #444;
+  --text-primary: #ffffff;
+  --border-color: #444;
+  --accent: #37d6c4;
+  --delete-btn-bg: #F87171;
 }
+
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f0f0f0;
+  --bg-tertiary: #dddddd;
+  --bg-card: #f7f7f7;
+  --text-primary: #213547;
+  --border-color: #ddd;
+  --accent: #2bb8a8;
+  --delete-btn-bg: #EF4444
+}
+
 *{
   box-sizing: border-box;
   padding: 0;

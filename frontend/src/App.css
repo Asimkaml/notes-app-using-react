@@ -8,8 +8,8 @@
 }
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
-  background-color: #333;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
 
   display: flex;
   flex-direction: column;

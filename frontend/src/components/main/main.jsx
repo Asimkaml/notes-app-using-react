@@ -12,9 +12,16 @@ const Main = (props) => {
     return (
         <div className={styles.mainContent}>
             {props.notes.map(note => {
-                console.log(note);
-                // return <NoteCard  topic={note.topic} title={note.title} content={note.content} />;
-                return <NoteCard  topic="Null" title={note.title} content={note.content} />;
+                return (
+                    <NoteCard
+                        key={note.id}
+                        id={note.id}
+                        title={note.title}
+                        content={note.content}
+                        onDelete={props.onDeleteNote}
+                        onUpdate={props.onUpdateNote}
+                    />
+               );
             })}
             {/* <NoteCard topic="Work" title="First Note" content="This is the content of the first note." />
             <NoteCard topic="Personal" title="Second Note" content="This is the content of the second note." />

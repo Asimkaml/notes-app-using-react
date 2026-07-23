@@ -14,7 +14,7 @@
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--bg-secondary);
   border-radius: 50%;
 }
 .profileIcon img{
@@ -23,5 +23,5 @@
   object-fit: cover;
 }
 .profileIcon p{
-  color: #ffffff;
+  color: var(--text-primary);
 }

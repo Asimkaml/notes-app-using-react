@@ -3,8 +3,8 @@
   flex:0 0 auto;
   width: 100%;
   display: flex;
-  background-color: #333;
-  border-bottom: 1px solid #444;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -24,28 +24,42 @@
 /* Theme Toggle Button Styles */
 
 .themeToggleBtn {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 22px;
+  width: 58px;
+  height: 30px;
   border: none;
-  background-color: #fff;
-  border-radius: 50px;
+  border-radius: 999px;
+  background: var(--bg-secondary);
   cursor: pointer;
-  padding:3px 10px;
-  font-size: 12px;
-  font-weight: 600;
-  
+
+  display: flex;
+  align-items: center;
+
+  padding: 4px;
+
+  transition: background-color 0.3s ease,
+              box-shadow 0.3s ease,
+              transform 0.2s ease;
 }
-.themeToggleBtn .innerCircle {
-    width: 16px;
-    height: 16px;
-    background-color: #333;
-    border-radius: 50%;
-    position: relative;
-    left: 15%;
-    /* top: 2px; */
-    transition: all 0.3s ease;
+
+
+
+.themeToggleBtn:active {
+  transform: scale(0.97);
+}
+
+.innerCircleDark {
+  width: 22px;
+  height: 22px;
+
+  border-radius: 50%;
+  background: var(--bg-primary);
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.innerCircleLight {
+  transform: translateX(28px);
 }

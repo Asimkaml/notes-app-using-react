@@ -1,13 +1,14 @@
 import {useState} from "react";
+import NoteModal from "../note_modal/note_modal.jsx"
 import styles from "./add_note_btn.module.css"
+
 const AddNoteBtn = (props) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [isOpen, setIsOpen] = useState(false);
 
 
-    const handleAddNote = async (event) => {
-        event.preventDefault();
+    const handleAddNote = async (title, content) => {
         try{
             const response = await fetch(`${import.meta.env.VITE_API_BASE}/api/notes`,
                 {
@@ -36,33 +37,15 @@ const AddNoteBtn = (props) => {
             <div className={styles.addNoteBtn} onClick={() => setIsOpen(true)}>
                 <span className={styles.btnText}>Add New Note</span>
             </div>
-
+ 
             {isOpen && (
-                <div className={styles.overlay}>
-                    <form className={styles.modal} onSubmit={handleAddNote}>
-                        <input
-                            className={styles.titleInput}
-                            type="text"
-                            placeholder="Title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            required
-                        />
-                        <textarea
-                            className={styles.contentInput}
-                            placeholder="Write your note..."
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                            rows={6}
-                        />
-                        <div className={styles.modalActions}>
-                            <button type="button" onClick={() => setIsOpen(false)}>
-                                Cancel
-                            </button>
-                            <button type="submit">Save</button>
-                        </div>
-                    </form>
-                </div>
+                <NoteModal 
+                    initialTitle=""
+                    initialContent=""
+                    submitLabel="Save"
+                    onSave={handleAddNote}
+                    onClose={() => setIsOpen(false)}
+                />
             )}
         </>
     );

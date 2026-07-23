@@ -55,7 +55,7 @@ app.put("/api/notes/:id", async (req,res)=>{
 })
 
 app.delete("/api/notes/:id", async (req, res)=>{
-  const {id} = parseInt(req.params.id);
+  const id = parseInt(req.params.id);
   if(!id || isNaN(id)){
     return res.status(400).send("id is required and must be a number");
   }
