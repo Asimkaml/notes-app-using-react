@@ -11,14 +11,14 @@ const Header = (props) => {
 
                 <ProfileIcon />
                 <div className={styles.allNotes}>All Notes</div>
-                <SearchBar />
-                    <button className={styles.themeToggleBtn} onClick={props.toggleTheme}>
-                        <div className={`${styles.innerCircleDark} 
+                <SearchBar value={props.searchQuery} onChange={props.setSearchQuery}/>
+                <button className={styles.themeToggleBtn} onClick={props.toggleTheme}>
+                    <div className={`${styles.innerCircleDark} 
                         ${props.theme === "light" ? styles.innerCircleLight : ""}`}>
-                            {/* {props.theme === "dark" ? "dark" : "light"} */}
+                        {/* {props.theme === "dark" ? "dark" : "light"} */}
 
-                        </div>
-                    </button>
+                    </div>
+                </button>
                 <AddNoteBtn notes={props.notes} setNotes={props.setNotes}/>
             </div>
         </>

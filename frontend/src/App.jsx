@@ -7,6 +7,8 @@ import Main from './components/main/main.jsx'
 function App() {
   const [notes, setNotes] = useState([]);
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
+  const [searchQuery, setSearchQuery] = useState("");
+
 
   useEffect(() => {
       document.documentElement.setAttribute("data-theme", theme);
@@ -56,13 +58,32 @@ function App() {
     setNotes(prevNotes => prevNotes.map(note => (note.id === id ? updatedNote : note)));
   }
 
+  const filteredNotes = notes.filter(note => 
+    note.title.toLowerCase().includes(searchQuery.toLocaleLowerCase) ||
+    note.content.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+
 
   return (
     <>
-      <Header notes={notes} setNotes={setNotes} theme={theme} toggleTheme={toggleTheme} />
+      <Header 
+        notes={notes} 
+        setNotes={setNotes} 
+        theme={theme} 
+        toggleTheme={toggleTheme}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery} 
+      />
+
       <div className="content">
         <Sidebar notes={notes} />
-        <Main notes = {notes} onDeleteNote={handleDeleteNote} onUpdateNote={handleUpdateNote}/>
+        <Main 
+          notes={filteredNotes} 
+          onDeleteNote={handleDeleteNote} 
+          onUpdateNote={handleUpdateNote}
+
+        />
       </div>
     </>
   )
