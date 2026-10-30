@@ -4,7 +4,7 @@ import AddNoteBtn from "../button/add_note_btn.jsx";
 
 import styles from './header.module.css';
 const Header = (props) => {
-    let dark = "ON"
+    
     return (
         <>
             <div className={styles.header}>
@@ -19,7 +19,7 @@ const Header = (props) => {
 
                     </div>
                 </button>
-                <AddNoteBtn notes={props.notes} setNotes={props.setNotes}/>
+                <AddNoteBtn setNotes={props.setNotes}/>
             </div>
         </>
     );

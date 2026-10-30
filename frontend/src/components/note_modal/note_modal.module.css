@@ -50,3 +50,5 @@
     color: var(--bg-primary);
     font-weight: 600;
 }
+
+.error { color: #ff6b6b; font-size: 13px; }

@@ -2,6 +2,8 @@ import {useState} from 'react'
 
 import styles from "./note_card.module.css"
 import NoteModal from '../note_modal/note_modal'
+import { api } from "../../api.js";
+
 const NoteCard = (props) => {
 
     const [isEditing, setIsEditing] = useState(false)
@@ -12,22 +14,14 @@ const NoteCard = (props) => {
         }
     }
 
-    const handleUpdate = async (title ,content) => {
-        try{
-            const res = await fetch(`${import.meta.env.VITE_API_BASE}/api/notes/${props.id}`,{
-                method: "PUT",
-                headers: {"Content-type":"application/json"},
-                body: JSON.stringify({title,content})                
-            })
-            const updatedNote = await res.json();
-            props.onUpdate(props.id, updatedNote)
-            setIsEditing(false)
-
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
+    const handleUpdate = async (title, content) => {
+        const updated = await api(`/api/notes/${props.id}`, {
+            method: "PUT",
+            body: { title, content },
+        });
+        props.onUpdate(props.id, updated);
+        setIsEditing(false);
+        };
     return (
         <div className={styles.card}>
             <div className={styles.cardHeader}>

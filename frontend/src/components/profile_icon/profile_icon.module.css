@@ -25,3 +25,9 @@
 .profileIcon p{
   color: var(--text-primary);
 }
+
+.logoutBtn {
+  background: none; border: 1px solid var(--border-color);
+  color: var(--text-primary); border-radius: 6px;
+  padding: 2px 8px; cursor: pointer; font-size: 12px;
+}
