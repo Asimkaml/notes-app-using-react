@@ -6,8 +6,15 @@ import { signToken, setAuthCookie, clearAuthCookie } from "../utils/token.js";
 const publicUser = { id: true, name: true, email: true };
 
 // fake hash. compare against it when email unknown, so timing same.
-const DUMMY_HASH = bcrypt.hashSync("not-a-real-password", 12);
+let dummyHashPromise;
 
+const getDummyHash = () => {
+  if (!dummyHashPromise) {
+    dummyHashPromise = bcrypt.hash("not-a-real-password", 12);
+  }
+
+  return dummyHashPromise;
+};
 export const signup = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -30,7 +37,7 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await prisma.user.findUnique({ where: { email } });
-  const ok = await bcrypt.compare(password, user ? user.passwordHash : DUMMY_HASH);
+  const ok = await bcrypt.compare(password, user ? user.passwordHash : await getDummyHash());
 
   if (!user || !ok) throw new HttpError(401, "Wrong email or password.");
 
