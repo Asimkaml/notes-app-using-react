@@ -1,4 +1,4 @@
-import { prisma } from "../lib/prisma.js";
+// import { prisma } from "../lib/prisma.js";
 import { HttpError } from "../utils/httpError.js";
 
 const parseId = (value) => {
@@ -8,7 +8,7 @@ const parseId = (value) => {
 };
 
 export const listNotes = async (req, res) => {
-  const notes = await prisma.note.findMany({
+  const notes = await req.prisma.note.findMany({
     where: { userId: req.user.id },
     orderBy: { createdAt: "desc" },
   });
@@ -16,7 +16,7 @@ export const listNotes = async (req, res) => {
 };
 
 export const createNote = async (req, res) => {
-  const note = await prisma.note.create({
+  const note = await req.prisma.note.create({
     data: { ...req.body, userId: req.user.id },
   });
   res.status(201).json(note);
@@ -25,20 +25,20 @@ export const createNote = async (req, res) => {
 export const updateNote = async (req, res) => {
   const id = parseId(req.params.id);
 
-  const result = await prisma.note.updateMany({
+  const result = await req.prisma.note.updateMany({
     where: { id, userId: req.user.id }, 
     data: req.body,
   });
   if (result.count === 0) throw new HttpError(404, "Note not found.");
 
-  const note = await prisma.note.findUnique({ where: { id } });
+  const note = await req.prisma.note.findUnique({ where: { id } });
   res.json(note);
 };
 
 export const deleteNote = async (req, res) => {
   const id = parseId(req.params.id);
 
-  const result = await prisma.note.deleteMany({
+  const result = await req.prisma.note.deleteMany({
     where: { id, userId: req.user.id },
   });
   if (result.count === 0) throw new HttpError(404, "Note not found.");

@@ -1,4 +1,4 @@
-import { prisma } from "../lib/prisma.js";
+// import { prisma } from "../lib/prisma.js";
 import { HttpError } from "../utils/httpError.js";
 import { verifyToken } from "../utils/token.js";
 
@@ -13,7 +13,7 @@ export const requireAuth = async (req, res, next) => {
     throw new HttpError(401, "Session expired. Please log in again.");
   }
 
-  const user = await prisma.user.findUnique({
+  const user = await req.prisma.user.findUnique({
     where: { id: payload.userId },
     select: { id: true, name: true, email: true },
   });

@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { prisma } from "../lib/prisma.js";
+// import { prisma } from "../lib/prisma.js";
 import { HttpError } from "../utils/httpError.js";
 import { signToken, setAuthCookie, clearAuthCookie } from "../utils/token.js";
 
@@ -18,13 +18,13 @@ const getDummyHash = () => {
 export const signup = async (req, res) => {
   const { name, email, password } = req.body;
 
-  const existing = await prisma.user.findUnique({ where: { email } });
+  const existing = await req.prisma.user.findUnique({ where: { email } });
   if (existing) {
     throw new HttpError(409, "An account with this email already exists.");
   }
 
   const passwordHash = await bcrypt.hash(password, 12);
-  const user = await prisma.user.create({
+  const user = await req.prisma.user.create({
     data: { name, email, passwordHash },
     select: publicUser,
   });
@@ -36,7 +36,7 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await prisma.user.findUnique({ where: { email } });
+  const user = await req.prisma.user.findUnique({ where: { email } });
   const ok = await bcrypt.compare(password, user ? user.passwordHash : await getDummyHash());
 
   if (!user || !ok) throw new HttpError(401, "Wrong email or password.");

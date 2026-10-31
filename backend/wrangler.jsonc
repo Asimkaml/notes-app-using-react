@@ -17,4 +17,5 @@
       "persist": true
     }
   },
+  "vars": { "NODE_ENV": "production" }
 }
